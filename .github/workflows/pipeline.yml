@@ -1,1 +1,22 @@
+name: First Pipeline
+on: 
+ push:
+  branches: [main]
+jobs:
+  check:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Download the repo code
+       uses: actions/checkout@v4
+     - name: List the files
+       run: ls
+     - name: Run this script
+       run: bash "hello.sh"
+  done:
+   needs: check
+   runs-on: ubuntu-latest
+   steps:
+     - name: Code has no errors
+       run: echo "Pipeline finished successfully!"
 
+     
