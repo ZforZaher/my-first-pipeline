@@ -11,7 +11,7 @@ jobs:
      - name: List the files
        run: ls
      - name: Run this script
-       run: bash "hello.sh"
+       run: bash "missing.sh"
   done:
    needs: check
    runs-on: ubuntu-latest
