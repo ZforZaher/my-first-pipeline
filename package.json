@@ -1,0 +1,15 @@
+{
+  "name": "my-first-pipeline",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint src",
+    "test": "node --test",
+    "build": "esbuild src/index.js --bundle --minify --outfile=dist/app.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "esbuild": "^0.25.0"
+  }
+}
