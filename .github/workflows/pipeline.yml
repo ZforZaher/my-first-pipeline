@@ -1,4 +1,4 @@
-name: First Pipeline
+name: CI
 on: 
  push:
   branches: [main]
@@ -6,20 +6,26 @@ on:
   branches: [main]
  workflow_dispatch: 
 jobs:
-  check:
+  ci:
    runs-on: ubuntu-latest
    steps:
      - name: Download the repo code
        uses: actions/checkout@v4
-     - name: List the files
-       run: ls
-     - name: Run this script
-       run: bash "hello.sh"
-  done:
-   needs: check
-   runs-on: ubuntu-latest
-   steps:
-     - name: Code has no errors
-       run: echo "Pipeline finished successfully!"
+     - name: Set up node.js
+       uses: actions/setup-node@v4
+       with:
+        node-version: 20
+     - name: Install dependancies
+       run: npm install
+     - name: Lint
+       run: npm lint
+     - name: Test
+       run: npm run test
+     - name: Build
+       run: npm run build
+     - name: list the dist file
+       run: ls dist
+   
+  
 
      
