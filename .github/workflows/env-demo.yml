@@ -1,0 +1,53 @@
+name: Env Demo
+
+on: 
+ workflow_dispatch:
+
+env:
+  GREETING: Hello from the workflow
+  LEVEL: workflow
+
+jobs:
+  demo:
+   runs-on: ubuntu-latest
+   env:
+     LEVEL: job # override the workflow
+   steps:
+     - name: read variables
+       run: |
+         echo "$GREETING"
+         echo "Level is $LEVEL"
+     - name: Step-Level overrided
+       env:
+         LEVEL: step
+       run: |
+         echo "Level is $LEVEL"
+     - name: Built-in Variables
+       run: |
+         echo "Branch: $GITHUB_REF_NAME"
+         echo "Commit: $GITHUB_SHA"
+         echo "Triggered by: $GITHUB_ACTOR"
+         echo "Run Number: $GITHUB_RUN_NUMBER"
+         echo "Runner OS: $RUNNER_OS"
+
+      - name: Repositroy variable
+        run: |
+         echo "App name is: ${{ vars.APP_NAME }}
+
+      - name: Secrets
+        env: 
+         MY_SECRETS: ${{ secrets.MY_SECRET }}
+        run: |
+         echo "The secret is: $MY_SECRET"
+         echo "The secret has ${#MY_SECRET} characters"
+         
+
+
+
+
+      
+         
+
+
+     
+         
